@@ -6,6 +6,7 @@
 using namespace std;
 
 void showMenu();
+void conductOption(string);
 void velocityCalc();
 void accelerationCalc();
 
@@ -20,26 +21,7 @@ int main()
     cout << "Choose an option: ";
     input = validateString(input);
 
-    if (input == "1")
-    {
-      velocityCalc();
-    }
-    else if (input == "2")
-    {
-      accelerationCalc();
-    }
-    else if (input == "X" || input == "x")
-    {
-      system("clear");
-    }
-    else if (input == "E" || input == "e")
-    {
-      cout << "Goodbye!\n";
-    }
-    else
-    {
-      cout << "Error processing input\n";
-    }
+    conductOption(input);
     
   } while (input != "E" && input != "e");
 
@@ -59,35 +41,96 @@ void showMenu()
   cout << "X) Clear Screen\n";
 }
 
+void conductOption(string option)
+{
+    if (option == "1")
+    {
+      velocityCalc();
+    }
+    else if (option == "2")
+    {
+      accelerationCalc();
+    }
+    else if (option == "3")
+    {
+      
+    }
+    else if (option == "4")
+    {
+      
+    }
+    else if (option == "5")
+    {
+      
+    }
+    else if (option == "X" || option == "x")
+    {
+      system("clear");
+    }
+    else if (option == "E" || option == "e")
+    {
+      cout << "Goodbye!\n";
+    }
+    else
+    {
+      cout << "Error processing input\n";
+    }
+}
+
 void velocityCalc()
 {
   double ds, dt;
-  float velocity;
-  cout << "Enter a value for delta S (speed): ";
+  float v;
+  string dsUnits, dtUnits;
+
+  cout << "Enter the unit of measurement for ds: ";
+  dsUnits = validateString(dsUnits);
+
+  cout << "Enter a value for ds: ";
   ds = validateDouble(ds);
 
-  cout << "Enter a value for delta T (time): ";
+  cout << "Enter the unit of measurement for dt: ";
+  dtUnits = validateString(dtUnits);
+
+  cout << "Enter a value for dt: ";
   dt = validateDouble(dt);
 
-  velocity = ds / dt;
-  cout << "The velocity is " << fixed << setprecision(4) << velocity << endl;
+  cout << "Calculating: " << "v = " << ds << " / " << dt << endl;
+  v = ds / dt;
+  cout << "The velocity is " << fixed << setprecision(4) << v << dsUnits + "/" + dtUnits << endl;
 }
 
 void accelerationCalc()
 {
   double dv, dt;
-  float acceleration;
-  cout << "Enter a value for delta V (velocity): ";
+  float a;
+  string dvUnits, dtUnits;
+
+  cout << "Enter the unit of measurement for dv: ";
+  dvUnits = validateString(dvUnits);
+
+  cout << "Enter a value for dv: ";
   dv = validateDouble(dv);
 
-  cout << "Enter a value for delta T (time): ";
+  cout << "Enter the unit of measurement for dt: ";
+  dtUnits = validateString(dtUnits);
+
+  cout << "Enter a value for dt: ";
   dt = validateDouble(dt);
 
-  acceleration = dv / dt;
-  cout << "The acceleration is " << fixed << setprecision(4) << acceleration << endl;
+  cout << "Calculating: " << "v = " << dv << " / " << dt << endl;
+  a = dv / dt;
+  cout << "The acceleration is " << fixed << setprecision(4) << a << dvUnits + "/" + dtUnits << endl;
 }
-
+/*
 void motionCalc()
 {
+  string option = "";
+
+  cout << "Select a formula:\n";
+  cout << "1) v = v_0 + at\n";
+  cout << "2) s = s_0 + v_0t + 1/2at²\n";
+  cout << "3) v² = v_0² + 2a(s - s_0)\n";
 
 }
+*/
