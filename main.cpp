@@ -33,7 +33,6 @@ int main()
   return 0;
 }
 
-
 void showMenu()
 {
   cout << "\n*PHYSICS CALCULATOR*\n\n";
@@ -71,7 +70,7 @@ void callOption(string option)
     }
     else if (option == "6")
     {
-      
+      momentumCalc();
     }
     else if (option == "X" || option == "x")
     {
@@ -140,8 +139,8 @@ void motionCalc()
   cout << "Select a formula:\n";
   cout << "1) v = u + at\n";
   cout << "2) s = ut + 1/2at²\n";
-  cout << "3) v²= (v_0)² + 2a(s - s_0)\n";
-  cout << "4) v = 1/2 (v + v_0)\n";
+  cout << "3) v²= u² + 2a(s - s_0)\n";
+  cout << "4) v = 1/2 (v + u)\n";
   cout << "X) Exit\n\n";
 
   do
@@ -151,11 +150,11 @@ void motionCalc()
 
     if (option == "1")
     {
-      double u, a, t;
+      double v0, a, t;
       float ma;
 
-      cout << "Enter a value for u: ";
-      u = validateDouble(u);
+      cout << "Enter a value for v0: ";
+      v0 = validateDouble(v0);
 
       cout << "Enter a value for a: ";
       a = validateDouble(a);
@@ -163,31 +162,66 @@ void motionCalc()
       cout << "Enter a value for t: ";
       t = validateDouble(t);
 
-      cout << "Calculating Ma = " << u << " + (" << a << " * " << t << ")\n";
-      ma = u + (a * t);
-      cout << "The motion is " << ma << endl; 
+      cout << "Calculating Ma = " << v0 << " + (" << a << " * " << t << ")\n";
+      ma = v0 + (a * t);
+      cout << "The motion is " << fixed << setprecision(4) << ma << endl; 
     }
     else if (option == "2")
     {
-      double u, t, a;
-      float Ms;
+      double s0, v0, t, a;
+      float ms;
 
-      cout << "Enter a value for u: ";
-      u = validateDouble(u);
+      cout << "Enter a value for s0: ";
+      s0 = validateDouble(s0);
+
+      cout << "Enter a value for v0: ";
+      v0 = validateDouble(v0);
 
       cout << "Enter a value for t: ";
       t = validateDouble(t);
 
       cout << "Enter a value for a: ";
       a = validateDouble(a);
+
+      cout << "Calculating Ms = " << s0 << " + (" << v0 << " * " << t << ") 1/2(" << a << " * " << t << "²)\n";
+      ms = s0 + (v0 * t) + 0.5 * (a * (t * t));
+      cout << "The motion is " << fixed << setprecision(4) << ms << endl;
     }
     else if (option == "3")
     {
+      double v0, a, s, s0;
+      float mv2;
 
+      cout << "Enter a value for v0: ";
+      v0 = validateDouble(v0);
+
+      cout << "Enter a value for a: ";
+      a = validateDouble(a);
+
+      cout << "Enter a value for s: ";
+      s = validateDouble(s);
+
+      cout << "Enter a value for s0: ";
+      s0 = validateDouble(s0);
+
+      cout << "Calculating Mv2 = " << v0 << "² + (2 * " << a << ") * (" << s << " - " << s0 << ")\n";
+      mv2 = (v0 * v0) + (2 * a) * (s - s0);
+      cout << "The motion is " << fixed << setprecision(4) << mv2 << endl; 
     }
     else if (option == "4")
     {
+      double v, v0;
+      float mv;
 
+      cout << "Enter a value for v: ";
+      v = validateDouble(v);
+
+      cout << "Enter a value for v0: ";
+      v0 = validateDouble(v0);
+
+      cout << "Calculating Mv = " << "1/2 * (" << v << " + " << v0 << ")\n";
+      mv = 0.5 * (v + v0);
+      cout << "The motion is " << fixed << setprecision(4) << mv << endl;
     }
     else
     {
@@ -238,4 +272,24 @@ void weightCalc()
   cout << "Calculating: " << "W = " << m << " * " << g << endl;
   w = m * g;
   cout << "The weight is " << fixed << setprecision(4) << w << " " + measure << endl;
+}
+
+void momentumCalc()
+{
+  double m, v;
+  float p;
+  string measure;
+
+  cout << "Enter the expected measure output: ";
+  measure = validateString(measure);
+
+  cout << "Enter a value for m: ";
+  m = validateDouble(m);
+
+  cout << "Enter a value for v: ";
+  v = validateDouble(v);
+
+  cout << "Calculating: " << "P = " << m << " * " << v << endl;
+  p = m * v;
+  cout << "The momentum is " << fixed << setprecision(4) << p << " " + measure << endl;
 }
