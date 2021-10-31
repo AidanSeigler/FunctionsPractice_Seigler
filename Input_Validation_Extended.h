@@ -14,9 +14,13 @@ string validateString(string &); //use the validation method to vaildate and ret
 template <typename T>
 T getValidatedInput()
 {
+    string green = "\x1b[" + to_string(32) + ";1m";
+    string reset = "\x1b[0m";
     // Get input of type T
     T result;
+    cout << green;
     cin >> result;
+    cout << reset;
 
     // Check if the failbit has been set, meaning the beginning of the input
     // was not type T. Also make sure the result is the only thing in the input
