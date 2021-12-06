@@ -1,6 +1,8 @@
-// Unit 1 Assignment
-// Physics Calculator
-// Student: Aidan Seigler
+
+// Created Oct. 30 2021
+// Assigned by Dr. Tyson McMillian, TCCD
+// The purpose of this assignment was to create a physics calculator
+// This assignment increased my knowledge of functions
 
 #include <iostream>
 #include <string>
